@@ -6,6 +6,7 @@ pub struct Ahocorasick{
     flagword:Vec<Option<String>>,
     state:usize
 }
+const CHARARRLEN:usize = 40;
 impl Ahocorasick{
     fn get_i(c:char)->Result<usize,String>{
         match c{
@@ -13,6 +14,8 @@ impl Ahocorasick{
             ' ' => Ok(26),
             '.' => Ok(27),
             ',' => Ok(28),
+            '\n' => Ok(29),
+            '0'..='9' => Ok(c as usize - '0' as usize + 30),
             _ => Err(format!("{} is not a valid character",c))
         }
     }
@@ -22,11 +25,13 @@ impl Ahocorasick{
             26 => Ok(' '),
             27 => Ok('.'),
             28 => Ok(','),
+            29 => Ok('\n'),
+            30..40 => Ok((i as u8 + '0' as u8) as char),
             _ => Err(format!("{} is out of bounds for character converstion",i))
         }
     }
     fn add_node(&mut self) -> usize{
-        self.adj.push(vec![None;29]);
+        self.adj.push(vec![None;CHARARRLEN]);
         self.flagword.push(None);
         self.maxsuffix.push(0);
         return self.adj.len()-1;
@@ -68,7 +73,7 @@ impl Ahocorasick{
         }
     }
     pub fn new() -> Ahocorasick{
-        return Ahocorasick { adj: vec![vec![None;29];1], maxsuffix: vec![0;1], flagword: vec![None;1],state:0 }
+        return Ahocorasick { adj: vec![vec![None;CHARARRLEN];1], maxsuffix: vec![0;1], flagword: vec![None;1],state:0 }
     }
     pub fn from_words(keywords:Vec<String>) -> Result<Ahocorasick,String>{
         let mut corasick = Ahocorasick::new();

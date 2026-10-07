@@ -1,0 +1,6 @@
+set the first number to 3.
+set the second number to 5.
+print the sum of the first number and the second number.
+set the third number to the product of the first number and the sum of the first number and the second number.
+print the quotient of the third number and the first number.
+print the sum of the first number and the difference of the product of the first number and the second number and the quotient of the first number and the second number.
