@@ -50,7 +50,6 @@ impl Parser{
         return self.parse_identifier();
     }
     fn parse_algebra(&mut self)->Result<Box<dyn Node>,String>{
-        println!("trying to parse sum");
         if let Token::The = self.get_token()? {} else {return Err("no the token".to_string())}
         let operation_char = match self.get_token()?{
             Token::Sum => '+',

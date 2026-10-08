@@ -81,12 +81,6 @@ impl Ahocorasick{
             corasick.add_word(word)?;
         }
         let mut queue = VecDeque::new();
-        for i in 0..corasick.adj.len(){
-            for j in 0..corasick.adj[0].len(){
-                print!("{:?} " , corasick.adj[i][j]);
-            }
-            println!();
-        }
         queue.push_back((0,"".to_string()));
         while let Some((index, curstr)) = queue.pop_front(){
             corasick.maxsuffix[index] = corasick.get_max_suff(&curstr)?;
@@ -102,7 +96,6 @@ impl Ahocorasick{
     }
     pub fn make_step(&mut self, c:char)->Result<Option<String>,String>{
         self.state = self.next_state(self.state, c)?;
-        println!("{}",self.state);
         return Ok(self.flagword[self.state].clone());
     }
 }
