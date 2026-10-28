@@ -7,5 +7,5 @@ the fibonacci is 1.
 
 the fibonacci is the sum of the fibonacci of the difference of the number and 1 and the fibonacci of the difference of the number and 2.
 
-set the number to 5.
+set the number to input from user.
 print the fibonacci of the number.

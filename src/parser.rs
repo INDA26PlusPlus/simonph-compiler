@@ -82,6 +82,10 @@ impl Parser{
             return Ok(node);
         }
         self.i = reseti;
+        if let Ok(node) = self.parse_input(){
+            return Ok(node);
+        }
+        self.i = reseti;
         return self.parse_identifier();
     }
     fn parse_algebra(&mut self)->Result<Box<dyn Node>,String>{
@@ -273,8 +277,16 @@ impl Parser{
         let block = self.parse_codeblock().unwrap();
         return Ok(Box::new(IfNode{expression:binop,code_block:block}));
     }
+    pub fn parse_input(&mut self)->Result<Box<dyn Node>,String>{
+        if let Token::Input = self.get_token()?{
+            return Ok(Box::new(InputNode{}));
+        }
+        else{
+            return Err("not an input".to_string());
+        }
+    }
     pub fn parse(&mut self)->Result<Box<dyn Node>,String>{
-        return self.parse_program();
+        return Ok(Box::new(RootNode{program_node:self.parse_program().unwrap()}));
     }
 
 }

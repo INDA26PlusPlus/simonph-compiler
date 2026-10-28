@@ -25,6 +25,7 @@ pub enum Token{
     Equal,
     If,
     Then,
+    Input,
 }
 #[derive(Debug)]
 pub struct Tokanizer{
@@ -60,6 +61,7 @@ impl Tokanizer{
             (" then,", Token::Then),
             (" if ", Token::If),
             ("\nif ", Token::If),
+            (" input from user", Token::Input)
         ];
         let mut map: HashMap<String,Token> = HashMap::new();
         for (key, token) in string_token_pairs.clone(){

@@ -1,3 +1,4 @@
+from functools import cache
 @cache
 def fibonacci(number):
 	if number == 0:
@@ -8,6 +9,6 @@ def fibonacci(number):
 
 	return (fibonacci((number-1))+fibonacci((number-2)))
 
-number=5
+number=int(input())
 print(fibonacci(number))
 

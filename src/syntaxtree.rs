@@ -355,3 +355,12 @@ impl Node for RootNode{
         self.program_node.print_tree(nr_tabs);
     }
 }
+pub struct InputNode;
+impl Node for InputNode{
+    fn getstring(&self,_:u8) -> String {
+        return "int(input())".to_string();
+    }
+    fn print_tree(&self, nr_tabs:u8) {
+        println!("{}",get_indent("input".to_string(), nr_tabs));
+    }
+}
