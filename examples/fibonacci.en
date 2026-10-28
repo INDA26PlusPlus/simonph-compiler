@@ -1,8 +1,10 @@
 how to get the fibonacci of a number.
 if the number is equal to 0 then,
 the fibonacci is 1.
+
 if the number is equal to 1 then,
 the fibonacci is 1.
+
 the fibonacci is the sum of the fibonacci of the difference of the number and 1 and the fibonacci of the difference of the number and 2.
 
 set the number to 5.

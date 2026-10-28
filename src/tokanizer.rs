@@ -16,7 +16,15 @@ pub enum Token{
     Difference,
     Product,
     Quotient,
-    Of
+    Of,
+    How,
+    Get,
+    A,
+    Is,
+    Eof,
+    Equal,
+    If,
+    Then,
 }
 #[derive(Debug)]
 pub struct Tokanizer{
@@ -34,6 +42,7 @@ impl Tokanizer{
             ("\nprint ", Token::Print),
             (" to ", Token::To),
             (" the ", Token::The),
+            ("\nthe ", Token::The),
             ("\n",Token::Newline),
             (" and ",Token::And),
             (" sum ", Token::Sum),
@@ -41,6 +50,16 @@ impl Tokanizer{
             (" difference ", Token::Difference),
             (" product ", Token::Product),
             (" quotient ", Token::Quotient),
+            (" how ", Token::How),
+            ("\nhow ", Token::How),
+            (" get ", Token::Get),
+            (" a ", Token::A),
+            (" is ", Token::Is),
+            (" equal ", Token::Equal),
+            (" then ", Token::Then),
+            (" then,", Token::Then),
+            (" if ", Token::If),
+            ("\nif ", Token::If),
         ];
         let mut map: HashMap<String,Token> = HashMap::new();
         for (key, token) in string_token_pairs.clone(){
@@ -79,6 +98,7 @@ impl Tokanizer{
         if !cur_chars.is_empty(){
             ret.push(Tokanizer::get_token(cur_chars));
         }
+        ret.push(Token::Eof);
         return Ok(ret);
     }
 }
