@@ -1,0 +1,88 @@
+; syntax
+
+<program>         ::= <block> <eof>
+                    | <block> <newline> <program>
+
+<block>           ::= <function-block>
+                    | <code-block>
+
+<function-block>  ::= <function-decl> <code-block>
+
+<function-decl>   ::= <how> <to> <get> <the> <text> <of> <parameters> <dot> <newline>
+
+<parameters>      ::= <a> <text>
+                    | <a> <text> <and> <parameters>
+
+<code-block>      ::= <code-line> <code-block>
+                    | <code-line> <newline>
+                    | <code-line> <newline> <code-block>
+
+<code-line>       ::= <print-stmt> <dot>
+                    | <return-stmt> <dot>
+                    | <set-stmt> <dot>
+                    | <if-stmt>
+
+<print-stmt>      ::= <print> <expression>
+
+<set-stmt>        ::= <set> <identifier> <to> <expression>
+
+<return-stmt>     ::= <the> <text> <is> <expression>
+
+<if-stmt>         ::= <if> <condition> <then> <newline> <code-block>
+
+<condition>       ::= <expression> <is> <equal> <to> <expression>
+
+<expression>      ::= <term>
+                    | <arithmetic>
+
+<term>            ::= <number>
+                    | <function-call>
+                    | <input>
+                    | <identifier>
+
+<arithmetic>      ::= <the> <operator> <of> <expression> <and> <expression>
+
+<operator>        ::= <sum>
+                    | <difference>
+                    | <product>
+                    | <quotient>
+
+<function-call>   ::= <the> <text> <of> <arguments>
+
+<arguments>       ::= <expression>
+                    | <expression> <and> <arguments>
+
+<identifier>      ::= <the> <text>
+
+; keywords
+
+<dot>             ::= "."
+<comma>           ::= ","
+<newline>         ::= "\n"
+<set>             ::= " set "  | "\nset "
+<print>           ::= " print " | "\nprint "
+<to>              ::= " to "
+<the>             ::= " the "  | "\nthe "
+<and>             ::= " and "
+<of>              ::= " of "
+<sum>             ::= " sum "
+<difference>      ::= " difference "
+<product>         ::= " product "
+<quotient>        ::= " quotient "
+<how>             ::= " how "  | "\nhow "
+<get>             ::= " get "
+<a>               ::= " a "
+<is>              ::= " is "
+<equal>           ::= " equal "
+<if>              ::= " if "   | "\nif "
+<then>            ::= " then " | " then,"
+<input>           ::= " input from user"
+
+; Any characters between two keywords form one token. If that text
+; parses as an i64 it is a <number>, otherwise it is a <text>.
+
+<number>          ::= any characters left between keywords that can be parsed as an i64
+
+<text>            ::= any characters left between keywords that are not a <number>
+
+<eof>             ::= end of input
